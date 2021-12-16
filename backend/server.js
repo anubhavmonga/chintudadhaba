@@ -5,7 +5,6 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import tableRoutes from "./routes/tableRoutes.js";
-import morgan from "morgan";
 
 env.config();
 connectDB();
@@ -13,8 +12,6 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-
-const path = require("path");
 
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
@@ -28,9 +25,6 @@ app.use("/api/tables/", tableRoutes);
 app.get("/api/config/paypal", (req, res) =>
   res.send(process.env.PAYPAL_CLIENT_ID)
 );
-
-// process.on("uncaughtException", () => console.log("hello"));
-// process.on("SIGTERM", () => console.log("hello"));
 
 const __dirname = path.resolve();
 app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
@@ -46,5 +40,17 @@ if (process.env.NODE_ENV === "production") {
     res.send("API is running....");
   });
 }
+
+// process.on("uncaughtException", () => console.log("hello"));
+// process.on("SIGTERM", () => console.log("hello"));
+
+process.once("SIGUSR2", function () {
+  process.kill(process.pid, "SIGUSR2");
+});
+
+process.on("SIGINT", function () {
+  // this is only called on ctrl+c, not restart
+  process.kill(process.pid, "SIGINT");
+});
 const PORT = process.env.PORT;
 app.listen(PORT || 5000, () => console.log(`listening on port ${PORT}....`));
