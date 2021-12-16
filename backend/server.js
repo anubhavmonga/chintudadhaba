@@ -7,6 +7,7 @@ import orderRoutes from "./routes/orderRoutes.js";
 import tableRoutes from "./routes/tableRoutes.js";
 import morgan from "morgan";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
+import path from "path";
 
 env.config();
 
@@ -53,6 +54,9 @@ app.get("/api/config/paypal", (req, res) =>
 //   // this is only called on ctrl+c, not restart
 //   process.kill(process.pid, "SIGINT");
 // });
+
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`listening on port ${PORT}....`));
