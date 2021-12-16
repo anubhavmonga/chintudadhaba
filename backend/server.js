@@ -38,6 +38,6 @@ process.on("SIGINT", function () {
   process.kill(process.pid, "SIGINT");
 });
 
-app.listen(process.env.PORT || config.httpPort, () =>
+app.listen(process.env.PORT, () =>
   console.log(`listening on port ${PORT}....`)
 );
