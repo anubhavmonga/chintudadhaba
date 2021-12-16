@@ -11,7 +11,7 @@ import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 dotenv.config();
 
 connectDB();
-
+const path = require("path");
 const app = express();
 if (process.env.NODE_ENV === "development") {
   app.use(morgan("dev"));
