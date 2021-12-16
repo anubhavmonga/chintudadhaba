@@ -1,5 +1,5 @@
 import express from "express";
-import dotenv from "dotenv";
+import env from "dotenv";
 import connectDB from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -8,7 +8,7 @@ import tableRoutes from "./routes/tableRoutes.js";
 import morgan from "morgan";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 
-dotenv.config();
+env.config();
 
 connectDB();
 
