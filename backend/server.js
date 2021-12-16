@@ -5,11 +5,15 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import tableRoutes from "./routes/tableRoutes.js";
+import morgan from "morgan";
+import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 env.config();
 connectDB();
 
 const app = express();
-
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 app.use(express.json());
 
 app.use("/api/data/", productRoutes);
@@ -39,13 +43,17 @@ if (process.env.NODE_ENV === "production") {
 // process.on("uncaughtException", () => console.log("hello"));
 // process.on("SIGTERM", () => console.log("hello"));
 
-process.once("SIGUSR2", function () {
-  process.kill(process.pid, "SIGUSR2");
-});
+// process.once("SIGUSR2", function () {
+//   process.kill(process.pid, "SIGUSR2");
+// });
 
-process.on("SIGINT", function () {
-  // this is only called on ctrl+c, not restart
-  process.kill(process.pid, "SIGINT");
-});
+// process.on("SIGINT", function () {
+//   // this is only called on ctrl+c, not restart
+//   process.kill(process.pid, "SIGINT");
+// });
+
+app.use(notFound);
+app.use(errorHandler);
+
 const PORT = process.env.PORT;
 app.listen(PORT || 5000, () => console.log(`listening on port ${PORT}....`));
