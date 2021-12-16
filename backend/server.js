@@ -1,5 +1,5 @@
 import express from "express";
-import env from "dotenv";
+import dotenv from "dotenv";
 import connectDB from "./config/db.js";
 import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
@@ -7,7 +7,7 @@ import orderRoutes from "./routes/orderRoutes.js";
 import tableRoutes from "./routes/tableRoutes.js";
 import morgan from "morgan";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
-env.config();
+dotenv.config();
 connectDB();
 
 const app = express();
