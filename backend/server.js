@@ -37,7 +37,5 @@ process.on("SIGINT", function () {
   // this is only called on ctrl+c, not restart
   process.kill(process.pid, "SIGINT");
 });
-
-app.listen(process.env.PORT || 5000, () =>
-  console.log(`listening on port ${PORT}....`)
-);
+const PORT = process.env.PORT;
+app.listen(PORT || 5000, () => console.log(`listening on port ${PORT}....`));
