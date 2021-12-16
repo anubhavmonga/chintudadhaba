@@ -40,4 +40,4 @@ process.on("SIGINT", function () {
 
 const PORT = process.env.PORT;
 
-app.listen(PORT, () => console.log(`listening on port ${PORT}....`));
+app.listen(PORT || 8000, () => console.log(`listening on port ${PORT}....`));
