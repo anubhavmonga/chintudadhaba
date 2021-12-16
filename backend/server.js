@@ -5,7 +5,7 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import tableRoutes from "./routes/tableRoutes.js";
-
+import morgan from "morgan";
 env.config();
 connectDB();
 
