@@ -5,17 +5,12 @@ import productRoutes from "./routes/productRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import orderRoutes from "./routes/orderRoutes.js";
 import tableRoutes from "./routes/tableRoutes.js";
-import morgan from "morgan";
 env.config();
 connectDB();
 
 const app = express();
 
 app.use(express.json());
-
-if (process.env.NODE_ENV === "development") {
-  app.use(morgan("dev"));
-}
 
 app.use("/api/data/", productRoutes);
 app.use("/api/users/", userRoutes);
