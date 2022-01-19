@@ -50,7 +50,7 @@ function PastOrders() {
                   month + 1
                 }-${year}`}</div>
                 <div className="order-entry1">
-                  {item.isDeliverd ? "Delivered" : "In Progress"}
+                  {item.isDelivered ? "Delivered" : "In Progress"}
                 </div>
               </React.Fragment>
             );

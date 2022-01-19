@@ -121,7 +121,7 @@ export default function UserPage() {
                             {item._id}
                           </Link>
                           <div className="order-entry1">
-                            {item.isDeliverd ? "Delivered" : "In Progress"}
+                            {item.isDelivered ? "Delivered" : "In Progress"}
                           </div>
                         </>
                       );
